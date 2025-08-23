@@ -130,56 +130,69 @@ emm_v5_driver/fast:
 .PHONY : emm_v5_driver/fast
 
 #=============================================================================
-# Target rules for targets named motor_example
+# Target rules for targets named emm_motor_example
 
 # Build rule for target.
-motor_example: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 motor_example
-.PHONY : motor_example
+emm_motor_example: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 emm_motor_example
+.PHONY : emm_motor_example
 
 # fast build rule for target.
-motor_example/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/motor_example.dir/build.make CMakeFiles/motor_example.dir/build
-.PHONY : motor_example/fast
+emm_motor_example/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emm_motor_example.dir/build.make CMakeFiles/emm_motor_example.dir/build
+.PHONY : emm_motor_example/fast
 
 #=============================================================================
-# Target rules for targets named setup_can
+# Target rules for targets named can_setup
 
 # Build rule for target.
-setup_can: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 setup_can
-.PHONY : setup_can
+can_setup: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 can_setup
+.PHONY : can_setup
 
 # fast build rule for target.
-setup_can/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/setup_can.dir/build.make CMakeFiles/setup_can.dir/build
-.PHONY : setup_can/fast
+can_setup/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/can_setup.dir/build.make CMakeFiles/can_setup.dir/build
+.PHONY : can_setup/fast
 
 #=============================================================================
-# Target rules for targets named check_can
+# Target rules for targets named can_check
 
 # Build rule for target.
-check_can: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 check_can
-.PHONY : check_can
+can_check: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 can_check
+.PHONY : can_check
 
 # fast build rule for target.
-check_can/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/check_can.dir/build.make CMakeFiles/check_can.dir/build
-.PHONY : check_can/fast
+can_check/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/can_check.dir/build.make CMakeFiles/can_check.dir/build
+.PHONY : can_check/fast
 
 #=============================================================================
-# Target rules for targets named cleanup_can
+# Target rules for targets named can_cleanup
 
 # Build rule for target.
-cleanup_can: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cleanup_can
-.PHONY : cleanup_can
+can_cleanup: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 can_cleanup
+.PHONY : can_cleanup
 
 # fast build rule for target.
-cleanup_can/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cleanup_can.dir/build.make CMakeFiles/cleanup_can.dir/build
-.PHONY : cleanup_can/fast
+can_cleanup/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/can_cleanup.dir/build.make CMakeFiles/can_cleanup.dir/build
+.PHONY : can_cleanup/fast
+
+#=============================================================================
+# Target rules for targets named show_usage
+
+# Build rule for target.
+show_usage: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 show_usage
+.PHONY : show_usage
+
+# fast build rule for target.
+show_usage/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_usage.dir/build.make CMakeFiles/show_usage.dir/build
+.PHONY : show_usage/fast
 
 src/EmmV5Driver.o: src/EmmV5Driver.cpp.o
 .PHONY : src/EmmV5Driver.o
@@ -210,7 +223,7 @@ src/example.o: src/example.cpp.o
 
 # target to build an object file
 src/example.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/motor_example.dir/build.make CMakeFiles/motor_example.dir/src/example.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emm_motor_example.dir/build.make CMakeFiles/emm_motor_example.dir/src/example.cpp.o
 .PHONY : src/example.cpp.o
 
 src/example.i: src/example.cpp.i
@@ -218,7 +231,7 @@ src/example.i: src/example.cpp.i
 
 # target to preprocess a source file
 src/example.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/motor_example.dir/build.make CMakeFiles/motor_example.dir/src/example.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emm_motor_example.dir/build.make CMakeFiles/emm_motor_example.dir/src/example.cpp.i
 .PHONY : src/example.cpp.i
 
 src/example.s: src/example.cpp.s
@@ -226,7 +239,7 @@ src/example.s: src/example.cpp.s
 
 # target to generate assembly for a file
 src/example.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/motor_example.dir/build.make CMakeFiles/motor_example.dir/src/example.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emm_motor_example.dir/build.make CMakeFiles/emm_motor_example.dir/src/example.cpp.s
 .PHONY : src/example.cpp.s
 
 # Help Target
@@ -237,11 +250,12 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... check_can"
-	@echo "... cleanup_can"
-	@echo "... setup_can"
+	@echo "... can_check"
+	@echo "... can_cleanup"
+	@echo "... can_setup"
+	@echo "... show_usage"
+	@echo "... emm_motor_example"
 	@echo "... emm_v5_driver"
-	@echo "... motor_example"
 	@echo "... src/EmmV5Driver.o"
 	@echo "... src/EmmV5Driver.i"
 	@echo "... src/EmmV5Driver.s"

@@ -64,98 +64,81 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/EmmV5Driver.cpp" AND
     message(STATUS "EmmV5Driver library will be built")
     
 else()
-    message(STATUS "EmmV5Driver source files not found - library will not be built")
+    message(WARNING "EmmV5Driver source files not found - library will not be built")
     set(EMM_V5_DRIVER_AVAILABLE FALSE)
 endif()
 
-# 检查并创建可执行文件（仅当相应源文件存在时）
+# 创建可执行文件
 set(EXECUTABLES_BUILT "")
 
-# 检查example.cpp
+# 主要的example程序
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/example.cpp")
     if(EMM_V5_DRIVER_AVAILABLE)
-        add_executable(motor_example src/example.cpp)
-        target_link_libraries(motor_example PRIVATE emm_v5_driver)
-        list(APPEND EXECUTABLES_BUILT "motor_example")
-        message(STATUS "Added target: motor_example")
+        add_executable(emm_motor_example src/example.cpp)
+        target_link_libraries(emm_motor_example PRIVATE emm_v5_driver)
+        list(APPEND EXECUTABLES_BUILT "emm_motor_example")
+        message(STATUS "Added target: emm_motor_example")
     else()
         message(WARNING "example.cpp found but EmmV5Driver library not available")
     endif()
 endif()
 
-# 检查motor_can_test.cpp
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/motor_can_test.cpp")
-    if(EMM_V5_DRIVER_AVAILABLE)
-        add_executable(motor_can_test src/motor_can_test.cpp)
-        target_link_libraries(motor_can_test PRIVATE emm_v5_driver)
-        list(APPEND EXECUTABLES_BUILT "motor_can_test")
-        message(STATUS "Added target: motor_can_test")
-    endif()
-endif()
-
-# 检查can_debug_tool.cpp
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/can_debug_tool.cpp")
-    if(EMM_V5_DRIVER_AVAILABLE)
-        add_executable(can_debug_tool src/can_debug_tool.cpp)
-        target_link_libraries(can_debug_tool PRIVATE emm_v5_driver)
-        list(APPEND EXECUTABLES_BUILT "can_debug_tool")
-        message(STATUS "Added target: can_debug_tool")
-    endif()
-endif()
-
-# 检查simple_can_test.cpp
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/simple_can_test.cpp")
-    if(EMM_V5_DRIVER_AVAILABLE)
-        add_executable(simple_can_test src/simple_can_test.cpp)
-        target_link_libraries(simple_can_test PRIVATE emm_v5_driver)
-        list(APPEND EXECUTABLES_BUILT "simple_can_test")
-        message(STATUS "Added target: simple_can_test")
-    endif()
-endif()
-
-# 如果没有找到任何可执行程序源文件，创建一个简单的测试程序
+# 如果没有找到任何可执行程序源文件，创建一个基础测试程序
 if(NOT EXECUTABLES_BUILT)
-    message(STATUS "No executable source files found, creating simple test program")
+    message(STATUS "Creating basic test program")
     
-    # 创建一个简单的测试文件
-    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/simple_test.cpp"
+    # 创建一个基础测试文件
+    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/basic_test.cpp"
 "#include <iostream>
 
 int main() {
-    std::cout << \"Hello from inverted_pendulum project!\" << std::endl;
-    std::cout << \"To use EMM_V5 motor driver, please add the following files:\" << std::endl;
-    std::cout << \"  - include/EmmV5Driver.h\" << std::endl;
-    std::cout << \"  - src/EmmV5Driver.cpp\" << std::endl;
-    std::cout << \"Then you can create motor control programs.\" << std::endl;
+    std::cout << \"EMM_V5 Motor Control Library Test\" << std::endl;
+    std::cout << \"Available programs:\" << std::endl;
+    std::cout << \"  - emm_motor_example: EMM_V5电机控制演示\" << std::endl;
+    std::cout << \"Please ensure EmmV5Driver.cpp and EmmV5Driver.h are present.\" << std::endl;
     return 0;
 }
 ")
     
-    add_executable(simple_test "${CMAKE_CURRENT_BINARY_DIR}/simple_test.cpp")
-    list(APPEND EXECUTABLES_BUILT "simple_test")
-    message(STATUS "Added target: simple_test (fallback)")
+    add_executable(basic_test "${CMAKE_CURRENT_BINARY_DIR}/basic_test.cpp")
+    list(APPEND EXECUTABLES_BUILT "basic_test")
+    message(STATUS "Added target: basic_test (fallback)")
 endif()
 
-# 添加自定义目标用于设置CAN接口
-add_custom_target(setup_can
+# 添加自定义目标用于CAN接口管理 - 避免使用保留名称
+add_custom_target(can_setup
     COMMAND sudo modprobe gs_usb
     COMMAND sudo ip link set can0 type can bitrate 1000000
     COMMAND sudo ip link set up can0
-    COMMENT "Setting up CAN interface with 1M bitrate"
+    COMMENT "Setting up CAN interface with 1M bitrate for Geschwister Schneider adapter"
     VERBATIM
 )
 
-# 添加自定义目标用于检查CAN接口状态
-add_custom_target(check_can
+add_custom_target(can_check
     COMMAND ip -details link show can0
     COMMENT "Checking CAN interface status"
     VERBATIM
 )
 
-# 添加清理CAN接口的目标
-add_custom_target(cleanup_can
+add_custom_target(can_cleanup
     COMMAND sudo ip link set down can0
     COMMENT "Shutting down CAN interface"
+    VERBATIM
+)
+
+# 显示配置帮助的目标 - 重命名避免保留名称冲突
+add_custom_target(show_usage
+    COMMAND echo "EMM_V5 Motor Control Usage:"
+    COMMAND echo "1. 设置CAN接口: make can_setup"
+    COMMAND echo "2. 检查CAN状态: make can_check"
+    COMMAND echo "3. 运行示例程序: ./bin/emm_motor_example"
+    COMMAND echo "4. 清理CAN接口: make can_cleanup"
+    COMMAND echo ""
+    COMMAND echo "文件结构要求:"
+    COMMAND echo "  include/EmmV5Driver.h  - 电机驱动头文件"
+    COMMAND echo "  src/EmmV5Driver.cpp    - 电机驱动实现文件"
+    COMMAND echo "  src/example.cpp        - 示例程序"
+    COMMENT "Displaying usage information"
     VERBATIM
 )
 
@@ -168,7 +151,6 @@ message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "Source directory: ${CMAKE_SOURCE_DIR}")
 message(STATUS "Binary directory: ${CMAKE_BINARY_DIR}")
 
-# 显示将要构建的目标
 if(EXECUTABLES_BUILT)
     message(STATUS "Executables to build: ${EXECUTABLES_BUILT}")
 else()
@@ -178,7 +160,8 @@ endif()
 if(EMM_V5_DRIVER_AVAILABLE)
     message(STATUS "EmmV5Driver library: Available")
 else()
-    message(STATUS "EmmV5Driver library: Not available")
+    message(STATUS "EmmV5Driver library: Not available - please add EmmV5Driver.cpp and EmmV5Driver.h")
 endif()
 
-message(STATUS "Custom targets: setup_can, check_can, cleanup_can")
+message(STATUS "Custom targets: can_setup, can_check, can_cleanup, show_usage")
+message(STATUS "=== End Configuration ===")
