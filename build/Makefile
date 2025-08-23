@@ -130,6 +130,19 @@ emm_v5_driver/fast:
 .PHONY : emm_v5_driver/fast
 
 #=============================================================================
+# Target rules for targets named inverted_pendulum
+
+# Build rule for target.
+inverted_pendulum: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 inverted_pendulum
+.PHONY : inverted_pendulum
+
+# fast build rule for target.
+inverted_pendulum/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverted_pendulum.dir/build.make CMakeFiles/inverted_pendulum.dir/build
+.PHONY : inverted_pendulum/fast
+
+#=============================================================================
 # Target rules for targets named emm_motor_example
 
 # Build rule for target.
@@ -194,6 +207,19 @@ show_usage/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_usage.dir/build.make CMakeFiles/show_usage.dir/build
 .PHONY : show_usage/fast
 
+#=============================================================================
+# Target rules for targets named run_pendulum
+
+# Build rule for target.
+run_pendulum: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 run_pendulum
+.PHONY : run_pendulum
+
+# fast build rule for target.
+run_pendulum/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_pendulum.dir/build.make CMakeFiles/run_pendulum.dir/build
+.PHONY : run_pendulum/fast
+
 src/EmmV5Driver.o: src/EmmV5Driver.cpp.o
 .PHONY : src/EmmV5Driver.o
 
@@ -242,6 +268,30 @@ src/example.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emm_motor_example.dir/build.make CMakeFiles/emm_motor_example.dir/src/example.cpp.s
 .PHONY : src/example.cpp.s
 
+src/inverted_pendulum.o: src/inverted_pendulum.cpp.o
+.PHONY : src/inverted_pendulum.o
+
+# target to build an object file
+src/inverted_pendulum.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverted_pendulum.dir/build.make CMakeFiles/inverted_pendulum.dir/src/inverted_pendulum.cpp.o
+.PHONY : src/inverted_pendulum.cpp.o
+
+src/inverted_pendulum.i: src/inverted_pendulum.cpp.i
+.PHONY : src/inverted_pendulum.i
+
+# target to preprocess a source file
+src/inverted_pendulum.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverted_pendulum.dir/build.make CMakeFiles/inverted_pendulum.dir/src/inverted_pendulum.cpp.i
+.PHONY : src/inverted_pendulum.cpp.i
+
+src/inverted_pendulum.s: src/inverted_pendulum.cpp.s
+.PHONY : src/inverted_pendulum.s
+
+# target to generate assembly for a file
+src/inverted_pendulum.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverted_pendulum.dir/build.make CMakeFiles/inverted_pendulum.dir/src/inverted_pendulum.cpp.s
+.PHONY : src/inverted_pendulum.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -253,15 +303,20 @@ help:
 	@echo "... can_check"
 	@echo "... can_cleanup"
 	@echo "... can_setup"
+	@echo "... run_pendulum"
 	@echo "... show_usage"
 	@echo "... emm_motor_example"
 	@echo "... emm_v5_driver"
+	@echo "... inverted_pendulum"
 	@echo "... src/EmmV5Driver.o"
 	@echo "... src/EmmV5Driver.i"
 	@echo "... src/EmmV5Driver.s"
 	@echo "... src/example.o"
 	@echo "... src/example.i"
 	@echo "... src/example.s"
+	@echo "... src/inverted_pendulum.o"
+	@echo "... src/inverted_pendulum.i"
+	@echo "... src/inverted_pendulum.s"
 .PHONY : help
 
 
