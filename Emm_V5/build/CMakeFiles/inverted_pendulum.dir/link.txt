@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -O2 -pthread CMakeFiles/inverted_pendulum.dir/src/inverted_pendulum.cpp.o CMakeFiles/inverted_pendulum.dir/src/EmmV5Driver.cpp.o -o bin/inverted_pendulum  -lrt 

@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/emm_motor_example.dir/src/example.cpp.o -o bin/emm_motor_example  lib/libemm_v5_driver.a 
