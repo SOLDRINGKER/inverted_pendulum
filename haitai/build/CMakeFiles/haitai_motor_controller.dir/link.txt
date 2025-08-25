@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libhaitai_motor_controller.a CMakeFiles/haitai_motor_controller.dir/src/HaitaiMotorController.cpp.o
+/usr/bin/ranlib lib/libhaitai_motor_controller.a

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -O2 CMakeFiles/pendulum_lqr_controller.dir/src/pendulum_lqr_controller.cpp.o -o bin/pendulum_lqr_controller  lib/libhaitai_motor_controller.a 
