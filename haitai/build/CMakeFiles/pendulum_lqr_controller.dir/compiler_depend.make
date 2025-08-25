@@ -288,19 +288,8 @@ CMakeFiles/pendulum_lqr_controller.dir/src/pendulum_lqr_controller.cpp.o: ../src
   /usr/include/c++/11/bits/locale_conv.h \
   /usr/include/c++/11/bits/quoted_string.h \
   /usr/include/c++/11/sstream \
-  /usr/include/c++/11/bits/sstream.tcc \
-  /usr/include/c++/11/algorithm \
-  /usr/include/c++/11/bits/stl_algo.h \
-  /usr/include/c++/11/bits/algorithmfwd.h \
-  /usr/include/c++/11/bits/stl_heap.h \
-  /usr/include/c++/11/bits/uniform_int_dist.h
+  /usr/include/c++/11/bits/sstream.tcc
 
-
-/usr/include/c++/11/bits/algorithmfwd.h:
-
-/usr/include/c++/11/bits/stl_algo.h:
-
-/usr/include/c++/11/algorithm:
 
 /usr/include/c++/11/sstream:
 
@@ -664,8 +653,6 @@ CMakeFiles/pendulum_lqr_controller.dir/src/pendulum_lqr_controller.cpp.o: ../src
 
 /usr/include/c++/11/cwctype:
 
-/usr/include/c++/11/bits/stl_heap.h:
-
 /usr/include/c++/11/bits/std_abs.h:
 
 /usr/include/c++/11/cstdio:
@@ -823,8 +810,6 @@ CMakeFiles/pendulum_lqr_controller.dir/src/pendulum_lqr_controller.cpp.o: ../src
 /usr/include/c++/11/iostream:
 
 /usr/include/x86_64-linux-gnu/bits/fp-fast.h:
-
-/usr/include/c++/11/bits/uniform_int_dist.h:
 
 /usr/include/c++/11/bits/basic_ios.h:
 
