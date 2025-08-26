@@ -1,9 +1,3 @@
-**Note:** Due to model limitations, the response may not account for all data in the uploaded file(s). For better results, consider using fewer or smaller file(s) with essential excerpts. [Learn more](https://you.com/support/what-are-the-context-window-limits)
-
-**Note:** Due to model limitations, the response may not account for all data in the uploaded file(s). For better results, consider using fewer or smaller file(s) with essential excerpts. [Learn more](https://you.com/support/what-are-the-context-window-limits)
-
-基于您上传的技术文档，我看到了**公式(12)的核心动力学方程**、**图2-2的优秀LQR仿真结果**、**表3-1的四状态控制策略**等关键内容，现在为您写一份面向开发者的中文README文档。
-
 # 🎯 基于拉格朗日方程的旋转动量轮倒立摆LQR控制系统
 
 [![构建状态](https://img.shields.io/badge/构建-通过-brightgreen.svg)]()
