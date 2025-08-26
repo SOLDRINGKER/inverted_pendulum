@@ -170,23 +170,6 @@ K = [  0.8090    0.4107   -0.0000    0.0000 ]   // 验证有效的控制增益
 - **编译器**：GCC 9.0+ 支持C++17标准  
 - **构建工具**：CMake 3.16+
 - **依赖库**：HaitaiMotorController电机通信库
-
-### 快速安装
-
-```bash
-# 克隆项目仓库
-git clone <项目仓库地址>
-cd rotational-inverted-pendulum
-
-# 构建项目
-mkdir build && cd build
-cmake ..
-make -j4
-
-# 运行系统 (需要sudo权限访问串口)
-sudo ./optimized_lqr_balance
-```
-
 ### 硬件配置检查
 
 ```bash
